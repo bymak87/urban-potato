@@ -32,6 +32,13 @@ Template.images.onCreated(function helloOnCreated() {
 Template.images.helpers({images: img_data});
 
 Template.images.events({
+  'click .js-image' : function (event){
+    console.log(event.target.alt);
+    $(event.target).css("width", "50px");
+  }
+})
+
+Template.images.events({
   'click button'(event, instance) {
     // increment the counter when button is clicked
     instance.counter.set(instance.counter.get() + 1);
