@@ -1,5 +1,5 @@
 /* CSS declarations go here */
-.image{
-  width: 25%;
-  height: 25%;
+.js-image{
+  width: 100%;
+  height: auto;
 }
