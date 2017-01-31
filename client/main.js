@@ -1,7 +1,12 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { Mongo } from 'meteor/mongo'
 
 import './main.html';
+
+Images = new Mongo.Collection("images");
+console.log("Image Count: " + Images.find().count());
+
 
 var img_data = [
   {
