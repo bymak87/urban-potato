@@ -1,24 +1,25 @@
 import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
 if(Meteor.isServer){
     Meteor.startup(() => {
   // code to run on server at startup
   console.log("code is running server");
 
-  var Images = new Mongo.Collection("images");
+   Images = new Mongo.Collection("images");
 
   if (Images.find().count() === 0){
-    Images.insert(
-      {
-        img_src: "https://s-media-cache-ak0.pinimg.com/736x/b9/3b/dc/b93bdc427c9aee78e91e340b182e4777.jpg",
-        img_alt: "persian cats"
-      },
-      {
-        img_src: "http://animalia-life.club/data_images/munchkin-cat/munchkin-cat5.jpg",
-        img_alt: "munchkin cats"
-      }
+    for (var i = 1; i < 23; i++){
+      Images.insert(
+        {
+          img_src: "public/images/img_"+ i + ".jpg",
+          img_alt: 'image number ' + i
+        },
+      )
+    } //end for
+    // count the images
+    console.log("img ct public." + Images.find().count());
 
-    )
     }// end of if
       });
   } // end of if server
