@@ -16,7 +16,7 @@ Template.images.onCreated(function helloOnCreated() {
 
 //Template.images.helpers({images: img_data});
 Template.images.helpers({ images:
-  Images.find({}, {sort:{rating:-1}})
+  Images.find({}, {sort:{createdOn: -1, rating:-1}})
 });
 
 Template.images.events({
@@ -41,8 +41,28 @@ Template.images.events({
     {$set: {rating:rating}});
     console.log(rating);
 
-  }
-});
+  },
+  'click .js-show-image-form' : function (event){
+    $("#image_add_form").modal('show');
+  },
+  });
+  Template.image_add_form.events({
+    'submit .js-add-image' : function (event){
+      var img_src, img_alt;
+      img_src = event.target.img_src.value; //use javascript for forms instead of jquery
+      img_alt = event.target.img_alt.value;
+      console.log("src: " + img_src + "alt : " + img_alt);
+      Images.insert({
+        img_src: img_src,
+        img_alt: img_alt,
+        createdOn: new Date()
+      })
+      $("#image_add_form").modal('show');
+      return false;//does not refresh page
+
+    }
+  })
+
 
 }
 
