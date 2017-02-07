@@ -12,7 +12,7 @@ if(Meteor.isServer){
     for (var i = 1; i < 23; i++){
       Images.insert(
         {
-          img_src: "public/images/img_"+ i + ".jpg",
+          img_src: "img_"+ i + ".jpg",
           img_alt: 'image number ' + i
         },
       )
